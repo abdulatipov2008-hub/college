@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Колледж программирования "Код"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: white;
+            background-color: black;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: #0a192f;
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #1e3a8a;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #3b82f6;
+        }
+
+        .device-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .device-btn {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .device-btn:hover {
+            background-color: #334155;
+        }
+
+        .device-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0a192f 0%, #1e293b 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #60a5fa;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #cbd5e1;
+        }
+
+        .services {
+            padding: 80px 0;
+            background-color: #0f172a;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #60a5fa;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #1e293b;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #3b82f6;
+        }
+
+        .service-card p {
+            color: #cbd5e1;
+        }
+
+        /* Стили для разных устройств */
+        .desktop-view .services-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .laptop-view .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .tablet-view .services-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .tablet-view .hero h1 {
+            font-size: 36px;
+        }
+
+        .mobile-view .services-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .mobile-view .hero h1 {
+            font-size: 28px;
+        }
+
+        .mobile-view .hero p {
+            font-size: 16px;
+        }
+
+        .mobile-view .service-card {
+            padding: 20px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .device-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="desktop-view">
+    <header>
+        <div class="container header-container">
+            <div class="logo">Колледж <span>Код</span></div>
+            <div class="device-buttons">
+                <button class="device-btn active" data-device="desktop">Компьютер</button>
+                <button class="device-btn" data-device="laptop">Ноутбук</button>
+                <button class="device-btn" data-device="tablet">Планшет</button>
+                <button class="device-btn" data-device="mobile">Телефон</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Стань востребованным программистом с нашим колледжем</h1>
+            <p>Мы предлагаем качественное IT-образование с опытными преподавателями. Получите профессию будущего быстро и эффективно!</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши направления</h2>
+                <p>Мы предлагаем полный спектр образовательных программ в сфере IT и программирования</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Веб-разработка</h3>
+                    <p>Обучение созданию современных веб-сайтов и приложений с использованием HTML, CSS, JavaScript и фреймворков</p>
+                </div>
+                <div class="service-card">
+                    <h3>Мобильная разработка</h3>
+                    <p>Подготовка разработчиков мобильных приложений для iOS и Android на Swift, Kotlin и React Native</p>
+                </div>
+                <div class="service-card">
+                    <h3>Data Science</h3>
+                    <p>Изучение анализа данных, машинного обучения и искусственного интеллекта с Python</p>
+                </div>
+                <div class="service-card">
+                    <h3>Кибербезопасность</h3>
+                    <p>Обучение защите информационных систем, этичному хакингу и сетевой безопасности</p>
+                </div>
+                <div class="service-card">
+                    <h3>Базы данных</h3>
+                    <p>Изучение проектирования, администрирования и оптимизации SQL и NoSQL баз данных</p>
+                </div>
+                <div class="service-card">
+                    <h3>DevOps</h3>
+                    <p>Освоение методологий непрерывной интеграции и доставки, контейнеризации и облачных технологий</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const deviceButtons = document.querySelectorAll('.device-btn');
+        const body = document.body;
+        
+        deviceButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                deviceButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const device = this.getAttribute('data-device');
+                body.classList.remove('desktop-view', 'laptop-view', 'tablet-view', 'mobile-view');
+                body.classList.add(device + '-view');
+            });
+        });
+    </script>
+</body>
+</html>
