@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академия Кибербезопасности "Щит"</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #00ff00;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            color: #00ff00;
+            padding: 18px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #00ff00;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .logo span {
+            color: #00ff00;
+            font-weight: 800;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { text-shadow: 1px 0 #ff00ff, -1px 0 #00ffff; }
+            50% { text-shadow: -1px 0 #ff00ff, 1px 0 #00ffff; }
+        }
+
+        .device-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .device-btn {
+            background-color: #111;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 8px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .device-btn:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        .device-btn.active {
+            background-color: #00ff00;
+            color: #000;
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+        }
+
+        .hero {
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 100, 0, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, #0a0a0a 0%, #111 100%);
+            color: #00ff00;
+            padding: 180px 0 120px;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #222;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><rect width="100" height="100" fill="none" stroke="%2300ff00" stroke-width="0.5"/><path d="M0,0 L100,100" stroke="%2300ff00" stroke-width="0.3"/><path d="M100,0 L0,100" stroke="%2300ff00" stroke-width="0.3"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 25px;
+            color: #00ff00;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            position: relative;
+        }
+
+        .hero h1::after {
+            content: "_";
+            animation: cursor 1s infinite;
+            color: #00ff00;
+        }
+
+        @keyframes cursor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-accent {
+            color: #00ffff;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 0 auto 35px;
+            color: #90ff90;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: transparent;
+            color: #00ff00;
+            padding: 15px 40px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .cta-button:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .courses {
+            padding: 100px 0;
+            background-color: #111;
+            position: relative;
+        }
+
+        .courses::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #00ff00;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        .section-title p {
+            color: #90ff90;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 17px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        .course-card {
+            background-color: #1a1a1a;
+            border-radius: 5px;
+            padding: 35px 30px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff00, #00ffff);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 255, 0, 0.2);
+            border-color: #00ff00;
+        }
+
+        .course-icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+            height: 80px;
+            width: 80px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+        }
+
+        .course-card h3 {
+            font-size: 22px;
+            margin-bottom: 18px;
+            color: #00ff00;
+        }
+
+        .course-card p {
+            color: #90ff90;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .course-features {
+            text-align: left;
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .course-features li {
+            color: #90ff90;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .course-features li:before {
+            content: ">";
+            color: #00ff00;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Стили для разных устройств */
+        .desktop-view .courses-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .laptop-view .courses-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .tablet-view .courses-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .tablet-view .hero h1 {
+            font-size: 36px;
+        }
+
+        .mobile-view .courses-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .mobile-view .hero h1 {
+            font-size: 30px;
+        }
+
+        .mobile-view .hero p {
+            font-size: 16px;
+        }
+
+        .mobile-view .course-card {
+            padding: 25px 20px;
+        }
+
+        /* Лаборатория */
+        .lab {
+            padding: 80px 0;
+            background-color: #0a0a0a;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .lab-item {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(0, 255, 0, 0.03);
+            border-radius: 5px;
+            border: 1px solid #222;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .lab-item:hover {
+            transform: translateY(-5px);
+            border-color: #00ff00;
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .lab-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #00ff00;
+            filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5));
+        }
+
+        .lab-item h4 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #00ff00;
+        }
+
+        .lab-item p {
+            color: #90ff90;
+            font-size: 14px;
+        }
+
+        /* Форма */
+        .contact-form {
+            padding: 80px 0;
+            background-color: #111;
+            position: relative;
+        }
+
+        .contact-form::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #1a1a1a;
+            padding: 50px;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            position: relative;
+        }
+
+        .form-container::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ff00, #00ffff, #ff00ff, #00ff00);
+            z-index: -1;
+            border-radius: 7px;
+            opacity: 0.5;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #00ff00;
+            font-size: 28px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ff00;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 3px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            color: #00ff00;
+            font-family: 'Consolas', monospace;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #555;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: transparent;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            border-radius: 3px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background-color: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .submit-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+            transition: left 0.7s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            color: #00ff00;
+            padding: 40px 0 30px;
+            border-top: 2px solid #00ff00;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        .footer-logo span {
+            color: #00ff00;
+            animation: glitch 3s infinite;
+        }
+
+        .footer-info {
+            color: #90ff90;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-contacts {
+            color: #90ff90;
+            font-size: 14px;
+        }
+
+        .footer-contacts a {
+            color: #00ff00;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contacts a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Терминал */
+        .terminal {
+            background-color: #111;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .terminal-header {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .terminal-line {
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .terminal-prompt {
+            color: #00ffff;
+            margin-right: 10px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .lab-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lab-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .device-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .form-container {
+                padding: 30px;
+            }
+            
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .course-card {
+                padding: 25px 20px;
+            }
+            
+            .lab-item {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body class="desktop-view">
+    <header>
+        <div class="container header-container">
+            <div class="logo">Академия <span>ЩИТ</span></div>
+            <div class="device-buttons">
+                <button class="device-btn active" data-device="desktop">Терминал</button>
+                <button class="device-btn" data-device="laptop">Ноутбук</button>
+                <button class="device-btn" data-device="tablet">Планшет</button>
+                <button class="device-btn" data-device="mobile">Смартфон</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Стань <span class="hero-accent">защитником</span> киберпространства</h1>
+            <p>Мы готовим специалистов по кибербезопасности для защиты цифровой инфраструктуры от современных угроз. Получите знания, которые помогут защитить данные и системы от кибератак.</p>
+            <a href="#contact" class="cta-button">Войти в систему</a>
+        </div>
+    </section>
+
+    <section class="courses">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наши программы</h2>
+                <p>Полный спектр курсов по кибербезопасности и этичному хакингу</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">🛡️</div>
+                    <h3>Этичный хакинг</h3>
+                    <p>Освойте техники взлома и защиты систем, научитесь находить уязвимости до того, как это сделают злоумышленники</p>
+                    <ul class="course-features">
+                        <li>Тестирование на проникновение</li>
+                        <li>Анализ уязвимостей</li>
+                        <li>Социальная инженерия</li>
+                        <li>Сертификация CEH</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">🔐</div>
+                    <h3>Криптография</h3>
+                    <p>Изучите методы шифрования данных, создание и взлом криптографических алгоритмов</p>
+                    <ul class="course-features">
+                        <li>Симметричное шифрование</li>
+                        <li>Асимметричные алгоритмы</li>
+                        <li>Цифровые подписи</li>
+                        <li>Квантовая криптография</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">🌐</div>
+                    <h3>Защита сетей</h3>
+                    <p>Научитесь защищать корпоративные сети от атак, настраивать межсетевые экраны и системы обнаружения вторжений</p>
+                    <ul class="course-features">
+                        <li>Firewall и IPS/IDS</li>
+                        <li>VPN и безопасные туннели</li>
+                        <li>Мониторинг сетевого трафика</li>
+                        <li>Анализ пакетов</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">🕵️</div>
+                    <h3>Киберрасследования</h3>
+                    <p>Освойте методы расследования киберпреступлений, сбор цифровых улик и судебную компьютерную экспертизу</p>
+                    <ul class="course-features">
+                        <li>Компьютерная криминалистика</li>
+                        <li>Анализ вредоносного ПО</li>
+                        <li>Сбор цифровых доказательств</li>
+                        <li>Судебная экспертиза</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">☁️</div>
+                    <h3>Облачная безопасность</h3>
+                    <p>Изучите методы защиты облачных инфраструктур, контейнеров и микросервисных архитектур</p>
+                    <ul class="course-features">
+                        <li>Безопасность AWS/Azure/GCP</li>
+                        <li>Контейнеризация и Docker</li>
+                        <li>DevSecOps практики</li>
+                        <li>IAM и управление доступом</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">🤖</div>
+                    <h3>Безопасность ИИ</h3>
+                    <p>Изучите методы защиты систем искусственного интеллекта и машинного обучения от атак</p>
+                    <ul class="course-features">
+                        <li>Adversarial attacks</li>
+                        <li>Защита моделей ML</li>
+                        <li>Конфиденциальность данных</li>
+                        <li>Безопасность нейросетей</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="lab">
+        <div class="container">
+            <div class="section-title">
+                <h2>Наша лаборатория</h2>
+                <p>Практические занятия на современном оборудовании и полигонах</p>
+            </div>
+            <div class="lab-grid">
+                <div class="lab-item">
+                    <div class="lab-icon">💻</div>
+                    <h4>Хакинг-полигон</h4>
+                    <p>Специально подготовленные стенды для отработки навыков тестирования на проникновение</p>
+                </div>
+                <div class="lab-item">
+                    <div class="lab-icon">🔬</div>
+                    <h4>Лаборатория анализа</h4>
+                    <p>Оборудование для анализа вредоносного ПО и исследования кибератак</p>
+                </div>
+                <div class="lab-item">
+                    <div class="lab-icon">🛠️</div>
+                    <h4>Крипто-лаборатория</h4>
+                    <p>Современное оборудование для работы с криптографическими алгоритмами</p>
+                </div>
+                <div class="lab-item">
+                    <div class="lab-icon">📡</div>
+                    <h4>Сетевая лаборатория</h4>
+                    <p>Реалистичные сетевые инфраструктуры для отработки защиты от атак</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container terminal">
+        <div class="terminal-header">terminal@shield-academy:~$ status --system</div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> Система защиты: <span style="color:#00ffff">АКТИВНА</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> Обучение студентов: <span style="color:#00ffff">857 ЧЕЛОВЕК</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> Успешные трудоустройства: <span style="color:#00ffff">94%</span>
+        </div>
+        <div class="terminal-line">
+            <span class="terminal-prompt">$</span> Последнее обновление: <span style="color:#00ffff">Сегодня 14:30</span>
+        </div>
+    </div>
+
+    <section class="contact-form" id="contact">
+        <div class="container">
+            <div class="form-container">
+                <h3 class="form-title">Заявка на доступ</h3>
+                <form id="accessForm">
+                    <div class="form-group">
+                        <label for="name">Псевдоним</label>
+                        <input type="text" id="name" name="name" required placeholder="Введите ваш псевдоним">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Зашифрованный email</label>
+                        <input type="email" id="email" name="email" required placeholder="user@securemail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Код доступа</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+X (XXX) XXX-XX-XX">
+                    </div>
+                    <div class="form-group">
+                        <label for="program">Направление подготовки</label>
+                        <select id="program" name="program">
+                            <option value="">Выберите программу</option>
+                            <option value="hacking">Этичный хакинг</option>
+                            <option value="crypto">Криптография</option>
+                            <option value="network">Защита сетей</option>
+                            <option value="investigation">Киберрасследования</option>
+                            <option value="cloud">Облачная безопасность</option>
+                            <option value="ai">Безопасность ИИ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Дополнительная информация</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Уровень подготовки, цели обучения..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Отправить зашифрованную заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div>
+                    <div class="footer-logo">Академия <span>ЩИТ</span></div>
+                    <p class="footer-info">Защита цифрового пространства с 2010 года<br>Работаем 24/7/365</p>
+                </div>
+                <div class="footer-contacts">
+                    <p>Контакты для связи:</p>
+                    <p>secure@shield-academy.ru</p>
+                    <p>+7 (XXX) XXX-XX-XX (только по зашифрованному каналу)</p>
+                    <p>г. Москва, ул. Кибербезопасности, 7</p>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2023 Академия Кибербезопасности "Щит". Все данные защищены. Взлом запрещен.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const deviceButtons = document.querySelectorAll('.device-btn');
+        const body = document.body;
+        
+        deviceButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                deviceButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const device = this.getAttribute('data-device');
+                body.classList.remove('desktop-view', 'laptop-view', 'tablet-view', 'mobile-view');
+                body.classList.add(device + '-view');
+            });
+        });
+
+        // Обработка формы
+        document.getElementById('accessForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Эффект загрузки
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'ШИФРОВАНИЕ...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Создаем эффект "взлома"
+                const terminal = document.querySelector('.terminal');
+                const newLine = document.createElement('div');
+                newLine.className = 'terminal-line';
+                newLine.innerHTML = `<span class="terminal-prompt">$</span> Новая заявка получена: <span style="color:#00ffff">${document.getElementById('name').value}</span>`;
+                terminal.appendChild(newLine);
+                
+                // Прокручиваем терминал к новой строке
+                terminal.scrollTop = terminal.scrollHeight;
+                
+                // Возвращаем кнопку в исходное состояние
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                
+                // Очищаем форму
+                this.reset();
+                
+                // Показываем сообщение
+                alert('[СИСТЕМНОЕ СООБЩЕНИЕ]\n\nЗаявка успешно зашифрована и отправлена.\nОжидайте ответа по защищенному каналу.');
+            }, 2000);
+        });
+
+        // Эффект печатающегося текста
+        const heroText = document.querySelector('.hero h1');
+        const originalText = heroText.innerHTML;
+        heroText.innerHTML = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < originalText.length) {
+                heroText.innerHTML += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            } else {
+                // Добавляем мигающий курсор
+                heroText.innerHTML += '<span style="animation: cursor 1s infinite">_</span>';
+            }
+        }
+        
+        // Запускаем эффект после загрузки страницы
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 500);
+        });
+    </script>
+</body>
+</html>
