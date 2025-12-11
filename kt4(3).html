@@ -54,35 +54,6 @@
             font-weight: 800;
         }
 
-        .device-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .device-btn {
-            background-color: #34495e;
-            border: 1px solid #7f8c8d;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .device-btn:hover {
-            background-color: #3d566e;
-            transform: translateY(-2px);
-        }
-
-        .device-btn.active {
-            background-color: #3498db;
-            color: white;
-            border-color: #3498db;
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-        }
-
         .hero {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
@@ -135,26 +106,6 @@
             color: #ecf0f1;
             max-width: 700px;
             line-height: 1.7;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
         }
 
         .programs {
@@ -270,157 +221,11 @@
             align-items: center;
         }
 
-        .program-features li:before {
+        .program-features li::before {
             content: "✓";
             color: #2ecc71;
             font-weight: bold;
             margin-right: 10px;
-        }
-
-        /* Стили для разных устройств */
-        .desktop-view .programs-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .laptop-view .programs-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tablet-view .programs-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tablet-view .hero h1 {
-            font-size: 36px;
-        }
-
-        .mobile-view .programs-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .mobile-view .hero h1 {
-            font-size: 30px;
-        }
-
-        .mobile-view .hero p {
-            font-size: 16px;
-        }
-
-        .mobile-view .program-card {
-            padding: 25px 20px;
-        }
-
-        /* Преимущества */
-        .advantages {
-            background-color: #f8f9fa;
-            padding: 80px 0;
-            border-top: 1px solid #eaeaea;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .advantages-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-
-        .advantage-item {
-            text-align: center;
-            padding: 30px 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
-            transition: transform 0.3s ease;
-        }
-
-        .advantage-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .advantage-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: #3498db;
-        }
-
-        .advantage-item h4 {
-            font-size: 18px;
-            margin-bottom: 12px;
-            color: #2c3e50;
-        }
-
-        .advantage-item p {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-
-        /* Форма обратной связи */
-        .contact-form {
-            padding: 80px 0;
-            background-color: white;
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: #f8f9fa;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eaeaea;
-        }
-
-        .form-title {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #2c3e50;
-            font-size: 28px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2c3e50;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 14px 18px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: border 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
         }
 
         footer {
@@ -467,11 +272,7 @@
             .programs-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .advantages-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
+
             .hero h1 {
                 font-size: 38px;
             }
@@ -482,36 +283,23 @@
                 flex-direction: column;
                 gap: 20px;
             }
-            
+
             .hero {
                 padding: 140px 0 80px;
             }
-            
+
             .hero h1 {
                 font-size: 32px;
             }
-            
+
             .hero p {
                 font-size: 16px;
             }
-            
+
             .programs-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .advantages-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .device-buttons {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .form-container {
-                padding: 30px;
-            }
-            
+
             .footer-container {
                 flex-direction: column;
                 text-align: center;
@@ -519,35 +307,39 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 375px) {
             .hero h1 {
                 font-size: 28px;
             }
-            
+
             .section-title h2 {
                 font-size: 30px;
             }
-            
+
             .program-card {
-                padding: 25px 20px;
-            }
-            
-            .advantage-item {
                 padding: 25px 15px;
+            }
+
+            .program-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .program-card h3 {
+                font-size: 20px;
             }
         }
     </style>
 </head>
-<body class="desktop-view">
+<body>
     <header>
         <div class="container header-container">
             <div class="logo">Бизнес-школа <span>Лидер</span></div>
-            <div class="device-buttons">
-                <button class="device-btn active" data-device="desktop">Компьютер</button>
-                <button class="device-btn" data-device="laptop">Ноутбук</button>
-                <button class="device-btn" data-device="tablet">Планшет</button>
-                <button class="device-btn" data-device="mobile">Телефон</button>
-            </div>
         </div>
     </header>
 
@@ -555,7 +347,6 @@
         <div class="container hero-content">
             <h1>Стань <span class="hero-accent">лидером</span> в бизнесе с нашей школой</h1>
             <p>Мы предлагаем современное бизнес-образование для руководителей и предпринимателей. Получите знания, которые помогут вашему бизнесу расти и развиваться в условиях современного рынка.</p>
-            <a href="#contact" class="cta-button">Записаться на консультацию</a>
         </div>
     </section>
 
@@ -636,109 +427,22 @@
         </div>
     </section>
 
-    <section class="advantages">
-        <div class="container">
-            <div class="section-title">
-                <h2>Преимущества обучения</h2>
-                <p>Почему руководители и предприниматели выбирают нашу бизнес-школу</p>
-            </div>
-            <div class="advantages-grid">
-                <div class="advantage-item">
-                    <div class="advantage-icon">🏆</div>
-                    <h4>Практикующие эксперты</h4>
-                    <p>Преподаватели с опытом руководства в крупных компаниях и собственных бизнесах</p>
-                </div>
-                <div class="advantage-item">
-                    <div class="advantage-icon">📊</div>
-                    <h4>Актуальные кейсы</h4>
-                    <p>Изучение реальных бизнес-ситуаций и практическое решение задач</p>
-                </div>
-                <div class="advantage-item">
-                    <div class="advantage-icon">🌐</div>
-                    <h4>Международные стандарты</h4>
-                    <p>Программы соответствуют мировым стандартам бизнес-образования</p>
-                </div>
-                <div class="advantage-item">
-                    <div class="advantage-icon">🤝</div>
-                    <h4>Нетворкинг</h4>
-                    <p>Возможность установить деловые контакты с руководителями различных отраслей</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-form" id="contact">
-        <div class="container">
-            <div class="form-container">
-                <h3 class="form-title">Получите консультацию по программам</h3>
-                <form id="consultationForm">
-                    <div class="form-group">
-                        <label for="name">ФИО</label>
-                        <input type="text" id="name" name="name" required placeholder="Иванов Иван Иванович">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="example@mail.ru">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Телефон</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
-                    </div>
-                    <div class="form-group">
-                        <label for="program">Интересующая программа</label>
-                        <select id="program" name="program">
-                            <option value="">Выберите программу</option>
-                            <option value="project">Управление проектами</option>
-                            <option value="strategy">Стратегический менеджмент</option>
-                            <option value="marketing">Маркетинг и продажи</option>
-                            <option value="finance">Финансовый менеджмент</option>
-                            <option value="hr">Управление персоналом</option>
-                            <option value="startup">Стартапы и инновации</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
             <div class="footer-container">
                 <div>
                     <div class="footer-logo">Бизнес-школа <span>Лидер</span></div>
-                    <p class="footer-info">г. Москва, ул. Деловая, 15<br>Пн-Пт: 9:00-20:00, Сб: 10:00-18:00</p>
-                </div>
-                <div>
-                    <p class="footer-info">+7 (495) 123-45-67<br>info@leader-business.ru</p>
+                    <div class="footer-info">
+                        г. Москва, ул. Тверская, 15<br>
+                        Телефон: +7 (495) 123-45-67<br>
+                        Email: info@lider-school.ru
+                    </div>
                 </div>
             </div>
             <div class="copyright">
-                © 2023 Бизнес-школа "Лидер". Все права защищены.
+                &copy; 2025 Бизнес-школа "Лидер". Все права защищены.
             </div>
         </div>
     </footer>
-
-    <script>
-        const deviceButtons = document.querySelectorAll('.device-btn');
-        const body = document.body;
-        
-        deviceButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                deviceButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                const device = this.getAttribute('data-device');
-                body.classList.remove('desktop-view', 'laptop-view', 'tablet-view', 'mobile-view');
-                body.classList.add(device + '-view');
-            });
-        });
-
-        // Обработка формы
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
-            this.reset();
-        });
-    </script>
 </body>
 </html>
