@@ -52,33 +52,6 @@
             color: #f0a500;
         }
 
-        .device-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .device-btn {
-            background-color: #a52a2a;
-            border: 1px solid #d2691e;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .device-btn:hover {
-            background-color: #d2691e;
-        }
-
-        .device-btn.active {
-            background-color: #f0a500;
-            color: #8b1a1a;
-            border-color: #f0a500;
-            font-weight: bold;
-        }
-
         .hero {
             background: linear-gradient(135deg, #8b1a1a 0%, #d2691e 100%);
             color: white;
@@ -206,39 +179,6 @@
             color: #d2691e;
         }
 
-        /* Стили для разных устройств */
-        .desktop-view .courses-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .laptop-view .courses-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tablet-view .courses-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .tablet-view .hero h1 {
-            font-size: 36px;
-        }
-
-        .mobile-view .courses-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .mobile-view .hero h1 {
-            font-size: 28px;
-        }
-
-        .mobile-view .hero p {
-            font-size: 16px;
-        }
-
-        .mobile-view .course-card {
-            padding: 20px;
-        }
-
         /* Дополнительный контент */
         .features {
             background-color: #8b1a1a;
@@ -290,11 +230,11 @@
             .courses-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .hero h1 {
                 font-size: 36px;
             }
@@ -305,62 +245,60 @@
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .hero {
                 padding: 120px 0 80px;
             }
-            
+
             .hero h1 {
                 font-size: 28px;
             }
-            
+
             .hero p {
                 font-size: 16px;
             }
-            
-            .courses-grid {
-                grid-template-columns: 1fr;
-            }
-            
+
+            .courses-grid,
             .features-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .device-buttons {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 375px) {
             .hero h1 {
                 font-size: 24px;
             }
-            
+
             .section-title h2 {
                 font-size: 26px;
             }
-            
+
             .course-card {
                 padding: 20px;
             }
-            
+
             .feature-item {
                 padding: 15px;
+            }
+
+            .feature-icon {
+                font-size: 30px;
+            }
+
+            .feature-item h4 {
+                font-size: 16px;
+            }
+
+            .feature-item p {
+                font-size: 13px;
             }
         }
     </style>
 </head>
-<body class="desktop-view">
+<body>
     <header>
         <div class="container header-container">
             <div class="logo">Академия <span>Вкус</span></div>
-            <div class="device-buttons">
-                <button class="device-btn active" data-device="desktop">Компьютер</button>
-                <button class="device-btn" data-device="laptop">Ноутбук</button>
-                <button class="device-btn" data-device="tablet">Планшет</button>
-                <button class="device-btn" data-device="mobile">Телефон</button>
-            </div>
         </div>
     </header>
 
@@ -442,24 +380,8 @@
 
     <footer>
         <div class="container">
-            <p>© 2023 Кулинарная Академия "Вкус". Все права защищены.</p>
-            <p style="margin-top: 10px; font-size: 14px; color: #d2691e;">г. Москва, ул. Гастрономическая, 15</p>
+            <p>&copy; 2025 Кулинарная Академия "Вкус". Все права защищены.</p>
         </div>
     </footer>
-
-    <script>
-        const deviceButtons = document.querySelectorAll('.device-btn');
-        const body = document.body;
-        
-        deviceButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                deviceButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                const device = this.getAttribute('data-device');
-                body.classList.remove('desktop-view', 'laptop-view', 'tablet-view', 'mobile-view');
-                body.classList.add(device + '-view');
-            });
-        });
-    </script>
 </body>
 </html>
