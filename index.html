@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Машинка с анимацией</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #87CEEB;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Дорога */
+        .road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background-color: #333;
+        }
+        
+        /* Разделительная линия на дороге */
+        .road-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(
+                to right,
+                #FFD700 0,
+                #FFD700 20px,
+                transparent 20px,
+                transparent 40px
+            );
+            transform: translateY(-50%);
+        }
+        
+        /* Солнце */
+        .sun {
+            position: absolute;
+            top: 30px;
+            right: 80px;
+            width: 60px;
+            height: 60px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #FFA500;
+        }
+        
+        /* Облака */
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50px;
+        }
+        
+        .cloud-1 {
+            top: 60px;
+            left: 150px;
+            width: 120px;
+            height: 50px;
+        }
+        
+        .cloud-2 {
+            top: 100px;
+            left: 300px;
+            width: 100px;
+            height: 40px;
+        }
+        
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+        }
+        
+        .cloud:before {
+            width: 50px;
+            height: 50px;
+            top: -20px;
+            left: 20px;
+        }
+        
+        .cloud:after {
+            width: 60px;
+            height: 60px;
+            top: -25px;
+            right: 20px;
+        }
+        
+        /* Контейнер для машинки */
+        .car-container {
+            position: absolute;
+            bottom: 120px;
+            left: 0;
+            width: 200px;
+            height: 100px;
+            animation: drive 5s ease-in-out forwards;
+        }
+        
+        /* Анимация движения */
+        @keyframes drive {
+            0% {
+                transform: translateX(-200px);
+            }
+            100% {
+                transform: translateX(calc(100vw - 250px));
+            }
+        }
+        
+        /* Основной корпус машинки */
+        .car {
+            position: relative;
+            width: 200px;
+            height: 100px;
+        }
+        
+        /* Кузов машинки */
+        .car-body {
+            position: absolute;
+            width: 180px;
+            height: 50px;
+            background-color: #FF4500;
+            top: 20px;
+            left: 10px;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        /* Кабина машинки */
+        .car-top {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            background-color: #FF6347;
+            top: 0;
+            left: 50px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        /* Лобовое стекло */
+        .windshield {
+            position: absolute;
+            width: 90px;
+            height: 30px;
+            background-color: #87CEEB;
+            top: 5px;
+            left: 55px;
+            border-radius: 5px;
+        }
+        
+        /* Фары */
+        .headlight {
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background-color: #FFD700;
+            border-radius: 3px;
+        }
+        
+        .headlight-front {
+            top: 35px;
+            right: 5px;
+        }
+        
+        .headlight-back {
+            top: 35px;
+            left: 5px;
+            background-color: #FF0000;
+        }
+        
+        /* Колеса */
+        .wheel {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #222;
+            border-radius: 50%;
+            bottom: 0;
+        }
+        
+        .wheel::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #CCC;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .wheel-front {
+            right: 25px;
+        }
+        
+        .wheel-back {
+            left: 25px;
+        }
+        
+        /* Детали колес */
+        .wheel-detail {
+            position: absolute;
+            width: 4px;
+            height: 30px;
+            background-color: #666;
+            top: 0;
+            left: 13px;
+        }
+        
+        .wheel-detail:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        
+        .wheel-detail:nth-child(3) {
+            transform: rotate(90deg);
+        }
+        
+        .wheel-detail:nth-child(4) {
+            transform: rotate(135deg);
+        }
+        
+        /* Инструкция */
+        .instruction {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            max-width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+        
+        /* Кнопка перезапуска анимации */
+        .restart-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+        
+        .restart-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="instruction">
+        <h1>CSS Машинка</h1>
+        <p>Машинка автоматически едет слева направо.</p>
+        <p>Ширина машинки: 200px</p>
+        <p>Останавливается за 50px до правого края.</p>
+    </div>
+    
+    <button class="restart-btn" onclick="restartAnimation()">Запустить снова</button>
+    
+    <div class="sun"></div>
+    
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    
+    <div class="road">
+        <div class="road-line"></div>
+    </div>
+    
+    <div class="car-container">
+        <div class="car">
+            <div class="car-body"></div>
+            <div class="car-top"></div>
+            <div class="windshield"></div>
+            <div class="headlight headlight-front"></div>
+            <div class="headlight headlight-back"></div>
+            
+            <div class="wheel wheel-front">
+                <div class="wheel-detail"></div>
+                <div class="wheel-detail"></div>
+                <div class="wheel-detail"></div>
+                <div class="wheel-detail"></div>
+            </div>
+            
+            <div class="wheel wheel-back">
+                <div class="wheel-detail"></div>
+                <div class="wheel-detail"></div>
+                <div class="wheel-detail"></div>
+                <div class="wheel-detail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function restartAnimation() {
+            const carContainer = document.querySelector('.car-container');
+            carContainer.style.animation = 'none';
+            
+            // Принудительный reflow для сброса анимации
+            void carContainer.offsetWidth;
+            
+            carContainer.style.animation = 'drive 5s ease-in-out forwards';
+        }
+    </script>
+</body>
+</html>
